@@ -1,0 +1,41 @@
+//测试界面
+class WndLogin extends WindowBase
+{
+    private btnLogin:GButton;
+
+    private static _wndLogin:WndLogin = null;
+    public static GetInst():WndLogin
+    {
+        if(this._wndLogin == null)
+        {
+            this._wndLogin = new WndLogin();
+            this._wndLogin.animation = ["fade_in","shrink"];
+        }
+        return this._wndLogin;
+    }
+
+    public constructor() {
+        super();
+    }
+    
+    protected onInit():void {
+        console.log("onInit")
+        this.name = "WndLogin";
+        this.contentPane = UIPackage.createObject("Login",this.name).asCom;
+        this.btnLogin = this.contentPane.getChild("btnLogin").asButton;
+
+        this.EventBind();
+    }
+
+    protected EventBind():void{
+        this.btnLogin.onClick(this,this.OnBtnLoginOnClick)
+    }
+
+    protected OnShown(): void {
+        console.log("onshown")
+    }
+
+    protected OnBtnLoginOnClick():void{
+
+    }
+}
